@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ConstantaFilmsList</string>
+    <string name="actors">Актеры</string>
+    <string name="directorName">Режиссер</string>
 </resources>
