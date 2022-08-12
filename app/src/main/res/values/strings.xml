@@ -2,4 +2,8 @@
     <string name="app_name">ConstantaFilmsList</string>
     <string name="actors">Актеры</string>
     <string name="directorName">Режиссер</string>
+    <string name="Loading">Загрузка</string>
+    <string name="Ready">Готово!</string>
+    <string name="Error">Ошибка!</string>
+    <string name="filmPressed">Фильм \u003C%1$s\u003E был нажат</string>
 </resources>

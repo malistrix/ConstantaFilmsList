@@ -5,6 +5,6 @@ data class Film(
     val directorName: String,
     val releaseYear: Int,
     //val actors: Set<Actor>  - это было бы слишком легко, не правда ли? =)
-    var actors: List<Actor>
+    val actors: List<Actor>
 
 )

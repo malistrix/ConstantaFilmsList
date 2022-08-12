@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import ru.evdokimova.constantafilmslist.R
 import ru.evdokimova.constantafilmslist.databinding.FragmentFilmsBinding
 import ru.evdokimova.constantafilmslist.utils.Resource
 
@@ -46,7 +47,11 @@ class FilmsFragment : Fragment() {
 
     private fun initAdapter() {
         filmsAdapter.setOnItemClickListener {
-            Toast.makeText(requireContext(), "Фильм <${it.title}> был нажат", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.filmPressed, it.title),
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
         mBinding.filmsRv.adapter = filmsAdapter
@@ -56,10 +61,12 @@ class FilmsFragment : Fragment() {
         viewModel.filmsLiveData.observe(viewLifecycleOwner) { filmsResource ->
             when (filmsResource) {
                 is Resource.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getText(R.string.Loading), Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), "Ready!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getText(R.string.Ready), Toast.LENGTH_SHORT)
+                        .show()
                     filmsAdapter.submitData(filmsResource.data!!)
                     filmsAdapter.notifyDataSetChanged()
                     mBinding.swipeRefresh.isRefreshing = false
@@ -68,7 +75,7 @@ class FilmsFragment : Fragment() {
                     mBinding.swipeRefresh.isRefreshing = false
                     Toast.makeText(
                         requireContext(),
-                        filmsResource.message ?: "Error",
+                        filmsResource.message ?: getText(R.string.Error),
                         Toast.LENGTH_LONG
                     ).show()
                 }

@@ -31,8 +31,17 @@ class FilmsViewModel @Inject constructor(
             val filmsRes = repository.getResourceFilms()
 
             if (filmsRes is Resource.Success) {
-                val films = filmsRes.data!!.sortedBy { it.releaseYear }
-                films.forEach { it.actors = it.actors.distinct() }
+                val films = mutableListOf<Film>()
+                filmsRes.data!!.sortedBy { it.releaseYear }.forEach {
+                    films.add(
+                        Film(
+                            it.title,
+                            it.directorName,
+                            it.releaseYear,
+                            it.actors.distinct()
+                        )
+                    )
+                }
                 _filmsLiveData.postValue(Resource.Success(films))
             } else {
                 _filmsLiveData.postValue(filmsRes)
