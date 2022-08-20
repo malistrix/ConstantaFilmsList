@@ -32,7 +32,7 @@ class FilmsViewModel @Inject constructor(
 
             if (filmsRes is Resource.Success) {
                 val films = mutableListOf<Film>()
-                filmsRes.data!!.sortedBy { it.releaseYear }.forEach {
+                filmsRes.data?.sortedBy { it.releaseYear }?.forEach {
                     films.add(
                         Film(
                             it.title,

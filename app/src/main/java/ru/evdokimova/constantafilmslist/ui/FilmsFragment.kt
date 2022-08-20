@@ -61,11 +61,11 @@ class FilmsFragment : Fragment() {
         viewModel.filmsLiveData.observe(viewLifecycleOwner) { filmsResource ->
             when (filmsResource) {
                 is Resource.Loading -> {
-                    Toast.makeText(requireContext(), getText(R.string.Loading), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getText(R.string.loading), Toast.LENGTH_SHORT)
                         .show()
                 }
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), getText(R.string.Ready), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getText(R.string.ready), Toast.LENGTH_SHORT)
                         .show()
                     filmsAdapter.submitData(filmsResource.data!!)
                     filmsAdapter.notifyDataSetChanged()
@@ -75,7 +75,7 @@ class FilmsFragment : Fragment() {
                     mBinding.swipeRefresh.isRefreshing = false
                     Toast.makeText(
                         requireContext(),
-                        filmsResource.message ?: getText(R.string.Error),
+                        filmsResource.message ?: getText(R.string.error),
                         Toast.LENGTH_LONG
                     ).show()
                 }

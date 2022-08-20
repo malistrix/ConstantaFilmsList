@@ -1,7 +1,7 @@
 package ru.evdokimova.constantafilmslist.utils
 
 sealed class Resource<T>(
-    var data: T? = null,
+    val data: T? = null,
     val message: String? = null
 ) {
     class Error<T>(message: String?) : Resource<T>(message = message)
